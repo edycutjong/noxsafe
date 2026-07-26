@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { ROSTER, CAP, FLOAT, ORG, QUARTER_END, SEED_CSV, PROOF, formatDisplay, etherscanTx, etherscanAddr, short, type DemoLine } from '../lib/demo';
 import { parseRosterCsv } from '@noxsafe/rail-sdk';
 import { RosterTable, CapMeter, StatusRail } from '../components/RosterBits';
@@ -31,6 +31,16 @@ function ProofButton({ label, className, txKey, cmd }: { label: string; classNam
 
 export default function SafeApp() {
   const [tab, setTab] = useState<(typeof TABS)[number]>('Onboard');
+
+  // Scroll-reveal: fade/slide landing sections in as they enter the viewport (once).
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+    const els = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((ents) => ents.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <>
       <Hero />
@@ -68,7 +78,7 @@ export default function SafeApp() {
 
 function Hero() {
   return (
-    <div className="card hero">
+    <div className="card hero reveal">
       <span className="eyebrow">Confidential payroll for Safe · iExec Nox · ERC-7984</span>
       <h2>Owners approve the cap.<br /><span className="accent">Nobody reads the salaries.</span></h2>
       <div className="lead">
@@ -98,12 +108,12 @@ const FLOW = [
 
 function FlowStrip() {
   return (
-    <div className="card">
+    <div className="card reveal">
       <h2>The one flow</h2>
       <div className="sub">One multisig batch onboards the rail; from there payroll runs on the queue the owners already know.</div>
       <div className="steps">
         {FLOW.map((s, i) => (
-          <div key={i} className={`step${s.seal ? ' seal' : ''}`}>
+          <div key={i} className={`step reveal lift${s.seal ? ' seal' : ''}`} style={{ ['--d' as any]: `${i * 80}ms` }}>
             <span className="num">{i + 1}</span>
             <div className="st-label">{s.label}</div>
             <div className="st-note">{s.note}</div>
@@ -122,7 +132,7 @@ function LiveProof() {
     { big: '100%', lbl: 'Contract coverage' },
   ];
   return (
-    <div className="card">
+    <div className="card reveal">
       <h2>Live proof — not a mock</h2>
       <div className="sub">
         The full quarter lifecycle is proven on Ethereum Sepolia, governed by a real 2-of-3 Safe. Every stat below is
@@ -130,7 +140,7 @@ function LiveProof() {
       </div>
       <div className="stats">
         {stats.map((s, i) => (
-          <div key={i} className="stat">
+          <div key={i} className="stat reveal lift" style={{ ['--d' as any]: `${i * 80}ms` }}>
             <div className="big">{s.big}</div>
             <div className="lbl">{s.lbl}</div>
           </div>
@@ -210,11 +220,11 @@ const FAQ_ITEMS: { q: string; a: React.ReactNode }[] = [
 
 function Faq() {
   return (
-    <div className="card">
+    <div className="card reveal">
       <h2>How it works — FAQ</h2>
       <div className="sub">Straight answers, every one backed by the on-chain proof in <code>/verify</code>.</div>
       {FAQ_ITEMS.map((item, i) => (
-        <details key={i} className="faq">
+        <details key={i} className="faq reveal">
           <summary>{item.q}</summary>
           <div className="ans">{item.a}</div>
         </details>

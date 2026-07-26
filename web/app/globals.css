@@ -115,13 +115,27 @@ details.faq { background: var(--slate-850); border: 1px solid var(--slate-800); 
 details.faq + details.faq { margin-top: 0; }
 details.faq summary { list-style: none; cursor: pointer; padding: 14px 16px; color: #fff; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 details.faq summary::-webkit-details-marker { display: none; }
-details.faq summary::after { content: '+'; color: var(--emerald-bright); font-family: var(--mono); font-size: 18px; font-weight: 400; transition: transform 0.18s ease; }
-details.faq[open] summary::after { content: '−'; }
+details.faq summary::after { content: '+'; color: var(--emerald-bright); font-family: var(--mono); font-size: 18px; font-weight: 400; display: inline-block; transition: transform 0.22s cubic-bezier(.2,.7,.2,1), color 0.18s ease; }
+details.faq[open] summary::after { content: '−'; transform: rotate(180deg) scale(1.15); color: var(--violet-bright); }
 details.faq[open] summary { border-bottom: 1px solid var(--slate-800); }
 details.faq .ans { padding: 12px 16px 16px; color: var(--slate-300); font-size: 13px; line-height: 1.6; }
 details.faq .ans code { font-family: var(--mono); font-size: 12px; color: var(--emerald-bright); }
 
+/* ── Micro-animation kit (scroll-reveal + lift + press) ──────────────── */
+@keyframes revealUp { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform:none; } }
+.reveal { opacity:0; }
+.reveal.in { animation: revealUp .6s cubic-bezier(.2,.7,.2,1) both; animation-delay: var(--d, 0ms); }
+.lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.lift:hover { transform: translateY(-4px); }
+
+/* CTA press feedback (buttons use .btn) */
+.btn { transition: transform .15s ease, filter .15s ease; }
+.btn:active { transform: translateY(1px) scale(.985); }
+
 @media (prefers-reduced-motion: reduce) {
   .step, details.faq summary::after { transition: none; }
   .step:hover { transform: none; }
+  .reveal, .reveal.in { animation: none !important; opacity:1 !important; transform:none !important; }
+  .lift:hover { transform:none !important; }
+  .btn:active { transform:none !important; }
 }
