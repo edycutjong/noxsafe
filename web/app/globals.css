@@ -84,3 +84,44 @@ td.mono, .mono { font-family: var(--mono); }
 .hash { font-family: var(--mono); font-size: 12px; color: var(--slate-400); }
 .badge { font-size: 11px; padding: 2px 8px; border-radius: 6px; background: rgba(16,185,129,0.12); color: var(--emerald-bright); border: 1px solid rgba(16,185,129,0.3); font-weight: 600; }
 .warn { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.3); border-radius: 8px; padding: 10px 12px; font-size: 12.5px; }
+
+/* ── Landing sections (first-time visitor) ───────────────────────────── */
+.hero { background: radial-gradient(700px 260px at 12% -20%, rgba(139,92,246,0.16), transparent 60%), linear-gradient(180deg, var(--slate-850), var(--slate-900)); }
+.hero h2 { font-size: 25px; line-height: 1.2; margin: 0 0 10px; letter-spacing: -0.02em; }
+.hero .lead { color: var(--slate-300); font-size: 14.5px; max-width: 640px; margin-bottom: 6px; }
+.hero .accent { color: var(--emerald-bright); }
+.hero .accent-v { color: var(--violet-bright); }
+
+.eyebrow { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--violet-bright); font-weight: 700; margin-bottom: 10px; }
+
+/* Step strip — one flow */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.step { background: var(--slate-850); border: 1px solid var(--slate-800); border-radius: 10px; padding: 14px; position: relative; transition: border-color 0.18s ease, transform 0.18s ease; }
+.step:hover { border-color: var(--emerald-deep); transform: translateY(-2px); }
+.step .num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 999px; background: rgba(16,185,129,0.14); border: 1px solid var(--emerald-deep); color: var(--emerald-bright); font-family: var(--mono); font-size: 12px; font-weight: 700; margin-bottom: 10px; }
+.step .st-label { color: #fff; font-size: 13.5px; font-weight: 600; margin-bottom: 3px; }
+.step .st-note { color: var(--slate-400); font-size: 12px; line-height: 1.45; }
+.step.seal .num { background: rgba(139,92,246,0.14); border-color: var(--violet); color: var(--violet-bright); }
+
+/* Stat tiles */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.stat { background: var(--slate-850); border: 1px solid var(--slate-800); border-radius: 10px; padding: 16px; text-align: center; }
+.stat .big { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+.stat .lbl { color: var(--slate-400); font-size: 12px; margin-top: 4px; }
+.stat .dot-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--emerald-bright); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); margin-right: 6px; vertical-align: middle; }
+
+/* FAQ — native details/summary */
+details.faq { background: var(--slate-850); border: 1px solid var(--slate-800); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+details.faq + details.faq { margin-top: 0; }
+details.faq summary { list-style: none; cursor: pointer; padding: 14px 16px; color: #fff; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq summary::after { content: '+'; color: var(--emerald-bright); font-family: var(--mono); font-size: 18px; font-weight: 400; transition: transform 0.18s ease; }
+details.faq[open] summary::after { content: '−'; }
+details.faq[open] summary { border-bottom: 1px solid var(--slate-800); }
+details.faq .ans { padding: 12px 16px 16px; color: var(--slate-300); font-size: 13px; line-height: 1.6; }
+details.faq .ans code { font-family: var(--mono); font-size: 12px; color: var(--emerald-bright); }
+
+@media (prefers-reduced-motion: reduce) {
+  .step, details.faq summary::after { transition: none; }
+  .step:hover { transform: none; }
+}
