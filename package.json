@@ -1,0 +1,53 @@
+{
+  "name": "noxsafe-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NoxSafe — confidential payroll rails for Safe multisigs (iExec Nox / WTF!! Hackathon)",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "web"
+  ],
+  "scripts": {
+    "lint": "npm --prefix web run lint",
+    "typecheck": "npm --prefix web run typecheck",
+    "build": "npm --prefix web run build",
+    "compile": "hardhat compile",
+    "test": "vitest run --root packages/rail-sdk",
+    "test:contracts": "hardhat test",
+    "coverage": "hardhat coverage",
+    "coverage:check": "hardhat coverage && node scripts/check-coverage.mjs",
+    "test:all": "npm run test:contracts && npm test",
+    "node": "hardhat node",
+    "deploy": "node scripts/deploy.mjs",
+    "deploy:local": "RPC_URL=http://127.0.0.1:8545 node scripts/deploy.mjs",
+    "seed": "node scripts/seed.mjs",
+    "bench": "node scripts/bench.mjs",
+    "e2e": "node scripts/e2e.mjs",
+    "e2e:safe": "node scripts/e2e.safe.mjs",
+    "e2e:local": "RPC_URL=http://127.0.0.1:8545 node scripts/e2e.local.mjs",
+    "gateway-smoke": "node scripts/gateway-smoke.mjs",
+    "check-readiness": "node scripts/check_submission_readiness.mjs",
+    "verify:contracts": "node scripts/verify-contracts.mjs",
+    "cli": "tsx packages/cli/src/index.ts"
+  },
+  "dependencies": {
+    "@iexec-nox/handle": "^0.1.0-beta.13",
+    "dotenv": "^17.4.2",
+    "ethers": "^6.17.0"
+  },
+  "devDependencies": {
+    "@iexec-nox/nox-confidential-contracts": "^0.2.2",
+    "@iexec-nox/nox-protocol-contracts": "^0.2.4",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@safe-global/api-kit": "^5.0.1",
+    "@safe-global/protocol-kit": "^8.0.3",
+    "@safe-global/safe-apps-sdk": "^9.1.0",
+    "@types/node": "^22.20.1",
+    "hardhat": "^2.28.6",
+    "solidity-coverage": "^0.8.17",
+    "tsx": "^4.23.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7"
+  }
+}

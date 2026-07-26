@@ -1,0 +1,47 @@
+{
+  "chainId": 11155111,
+  "network": "sepolia",
+  "contracts": {
+    "DemoUSD": {
+      "address": "0x486c4B8009ACf0BfE26268512F27200e48BD735C",
+      "reused": true,
+      "underlyingDecimals": 6
+    },
+    "ConfidentialUSD": {
+      "address": "0x82C281D7403e44d61968c2F49751a56877468991",
+      "reused": true,
+      "underlying": "0x486c4B8009ACf0BfE26268512F27200e48BD735C",
+      "symbol": "cUSD"
+    },
+    "PayrollRail": {
+      "address": "0xE7158dAE72C94D6396ed73636d9E5Fe4B5370ED8",
+      "deployTx": "0x1081cae465f4af21f9505a439293fd56f58526630b5a4bb452a70a1239adaebb",
+      "cUSD": "0x82C281D7403e44d61968c2F49751a56877468991",
+      "safe": "0x3Bd273B4f90829C0fA5d2aFa296b02E2AFaF9642"
+    }
+  },
+  "safe": "0x3Bd273B4f90829C0fA5d2aFa296b02E2AFaF9642",
+  "safeConfig": {
+    "type": "Safe v1.4.1 (protocol-kit)",
+    "threshold": 2,
+    "owners": 3,
+    "deployTx": "0xf10caed7d1eac8c2608ce494f3251cc2c8529796ad9921f658e04415775e0a8e"
+  },
+  "deployer": "0xd59278A8dCe73224591B259Fe31f28f3cb64629E",
+  "noxProtocol": "0x24ef36ec5b626d7dcd09a98f3083c2758f0f77bf",
+  "etherscanVerified": true,
+  "gatewaySelfServe": true,
+  "verifyNote": "PayrollRail source-verify: npm run verify:contracts (ETHERSCAN_API_KEY is set in .env; zero gas, no redeploy). DemoUSD + cUSD already verified.",
+  "liveRun": {
+    "note": "FULL lifecycle proven on Sepolia via a REAL 2-of-3 Safe (npm run e2e:safe + complete-safe). See fixtures/e2e-result.json + bench.json.",
+    "designerDecryptedLine": "4200",
+    "capFlags": "true,true,true,true,true,false",
+    "auditorTotal": "26000",
+    "budgetComplianceEbool": "true",
+    "onboardingBatchTx": "0x682907a529ea5fae35c2a84c7f74c2abeb14227d84efce0b3ed4f00bdfaf72e1",
+    "executePayrollTx": "0x62bf1ca411e87a61100fcf3c33744476ea016d9a2ddea023d8b7612673b093d2",
+    "perPayoutGas": 310617
+  },
+  "deployedAt": "2026-07-12T01:33:38.799Z",
+  "etherscanVerifiedAt": "2026-07-13"
+}

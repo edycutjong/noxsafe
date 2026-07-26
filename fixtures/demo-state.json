@@ -1,0 +1,80 @@
+{
+  "network": "sepolia",
+  "generatedAt": "2026-07-12T01:32:58.410Z",
+  "org": "Meridian Collective",
+  "contracts": {
+    "DemoUSD": {
+      "address": "0x486c4B8009ACf0BfE26268512F27200e48BD735C",
+      "reused": true,
+      "underlyingDecimals": 6,
+      "note": "Already live on Sepolia (shared skeleton with NoxSend). REUSED — not redeployed."
+    },
+    "ConfidentialUSD": {
+      "address": "0x82C281D7403e44d61968c2F49751a56877468991",
+      "reused": true,
+      "underlying": "0x486c4B8009ACf0BfE26268512F27200e48BD735C",
+      "symbol": "cUSD",
+      "note": "ERC20ToERC7984Wrapper. Already live on Sepolia. REUSED — not redeployed."
+    },
+    "PayrollRail": {
+      "address": null,
+      "note": "PENDING the funded run. Deploy with: SAFE_ADDRESS=<demoSafe> npm run deploy (constructor args: cUSD, safe)."
+    }
+  },
+  "noxProtocol": "0x24ef36ec5b626d7dcd09a98f3083c2758f0f77bf",
+  "safe": "0x3Bd273B4f90829C0fA5d2aFa296b02E2AFaF9642",
+  "cap": 25000,
+  "float": 25000,
+  "owners": {
+    "owner1": "0xbCcaec96dE81b489327E45cA7e467a18dc4E7B1a",
+    "owner2": "0x7E92b6D35786b31065310A2BFbD6D636D43A48Bf",
+    "owner3": "0xd1a560044D530602A2068806D3ce5908c30d043E",
+    "threshold": 2
+  },
+  "treasurer": "0xbCcaec96dE81b489327E45cA7e467a18dc4E7B1a",
+  "recipients": [
+    {
+      "name": "Dev",
+      "key": "dev",
+      "address": "0x4cd3cc85DEDC2e310e5A0Eca52f60dA431d846FF",
+      "amount": 12000
+    },
+    {
+      "name": "Designer",
+      "key": "designer",
+      "address": "0x264169141926465e765Ce6ac4B8dce61cA26Ea7A",
+      "amount": 4200
+    },
+    {
+      "name": "Writer",
+      "key": "writer",
+      "address": "0xd37D83b3e90861E06cb92BAA305D18288638611E",
+      "amount": 1800
+    },
+    {
+      "name": "Ops",
+      "key": "ops",
+      "address": "0x1c1357e900D592C8Ad1669Ad1e4283a0e3b64a68",
+      "amount": 3500
+    },
+    {
+      "name": "Advisor",
+      "key": "advisor",
+      "address": "0xB1fC6A5Fea135b324246489cc5dd500cdB4Aa0d9",
+      "amount": 2500
+    }
+  ],
+  "overCapProbe": {
+    "name": "Probe",
+    "address": "0xaeF58ce2A0db1452398E6Ec0c97E507e3339980f",
+    "amount": 2000
+  },
+  "auditor": "0x6f66F189224Fdc0f457c1706ef83a205e014c006",
+  "complianceOfficer": "0x55987B13CcCD467a78E4aD0c195cA2D0833ABd78",
+  "note": "Actors derive from DEMO_MNEMONIC (throwaway, in .env). Owner-1 doubles as treasurer.",
+  "ownersDeployed": [
+    "0xbCcaec96dE81b489327E45cA7e467a18dc4E7B1a",
+    "0x7E92b6D35786b31065310A2BFbD6D636D43A48Bf",
+    "0xd1a560044D530602A2068806D3ce5908c30d043E"
+  ]
+}

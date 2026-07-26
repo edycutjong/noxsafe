@@ -1,0 +1,9 @@
+# Meridian Collective — Q3 confidential payroll roster (SEED_DATA.md)
+name,address,amount
+Dev,0x4cd3cc85DEDC2e310e5A0Eca52f60dA431d846FF,12000
+Designer,0x264169141926465e765Ce6ac4B8dce61cA26Ea7A,4200
+Writer,0xd37D83b3e90861E06cb92BAA305D18288638611E,1800
+Ops,0x1c1357e900D592C8Ad1669Ad1e4283a0e3b64a68,3500
+Advisor,0xB1fC6A5Fea135b324246489cc5dd500cdB4Aa0d9,2500
+# over-cap probe (breaches the 25,000 cap -> pays encrypted zero, publicly flagged false)
+Probe,0xaeF58ce2A0db1452398E6Ec0c97E507e3339980f,2000

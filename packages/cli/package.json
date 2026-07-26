@@ -1,0 +1,16 @@
+{
+  "name": "@noxsafe/payroll-kit",
+  "version": "1.0.0",
+  "description": "Headless CLI to drive NoxSafe confidential payroll flows over @noxsafe/rail-sdk.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "noxsafe": "./src/index.ts"
+  },
+  "dependencies": {
+    "@noxsafe/rail-sdk": "*",
+    "@iexec-nox/handle": "^0.1.0-beta.13",
+    "dotenv": "^17.4.2",
+    "ethers": "^6.17.0"
+  }
+}

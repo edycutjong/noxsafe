@@ -1,0 +1,235 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel in-progress runs for the same PR/branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── STAGE 1: Contracts + SDK Quality (parallel with frontend & security) ──
+  contracts-quality:
+    name: "Stage 1 · Contracts + SDK"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Full matrix on main push, single node on PRs (saves CI minutes)
+        node-version: ${{ github.event_name == 'push' && fromJSON('[20, 22]') || fromJSON('[20]') }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install workspace dependencies
+        run: npm ci
+      - name: Compile contracts (Hardhat, solc 0.8.35 viaIR)
+        run: npm run compile
+      - name: Hardhat contract tests (65)
+        run: npm run test:contracts
+      - name: rail-sdk unit tests (128, Vitest)
+        run: npm test
+
+  # ── STAGE 1: Frontend Quality (parallel) ──────────────────
+  frontend-quality:
+    name: "Stage 1 · Frontend Quality"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - name: Install workspace dependencies
+        run: npm ci
+        working-directory: .
+      - name: Lint (next lint)
+        run: npm run lint
+      - name: Type check (tsc --noEmit)
+        run: npm run typecheck
+
+  # ── STAGE 2: Security Gate (parallel with Stage 1) ────────
+  secret-scan:
+    name: "Stage 2 · Secret Scanning"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for scanning git commits
+      - name: TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          extra_args: --only-verified
+
+  dependency-audit:
+    name: "Stage 2 · Dependency Audit"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: npm audit (high + critical)
+        run: npm audit --audit-level=high
+        continue-on-error: true # Don't block on transitive dep issues
+      - name: License compliance check
+        run: npx license-checker --production --failOn "GPL-3.0;AGPL-3.0" --summary
+        continue-on-error: true
+
+  # ── STAGE 3: Build Verification ───────────────────────────
+  build:
+    name: "Stage 3 · Build Verification"
+    needs: [frontend-quality, contracts-quality]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - name: Install workspace dependencies
+        run: npm ci
+      - name: Compile contracts
+        run: npm run compile
+      - name: Next.js production build (Safe App + portals)
+        run: npm run build
+        working-directory: web
+      - name: Check bundle size
+        working-directory: web
+        run: |
+          echo "📦 Bundle Size Report"
+          echo "─────────────────────"
+          if [ -d ".next" ]; then
+            TOTAL_SIZE=$(du -sk .next/static | cut -f1)
+            echo "Total static assets: ${TOTAL_SIZE}KB"
+            if [ "$TOTAL_SIZE" -gt 2000 ]; then
+              echo "::error::Bundle size ${TOTAL_SIZE}KB exceeds 2000KB error threshold"
+              exit 1
+            elif [ "$TOTAL_SIZE" -gt 1500 ]; then
+              echo "::warning::Bundle size ${TOTAL_SIZE}KB exceeds 1500KB warning threshold"
+            else
+              echo "✅ Bundle size within budget"
+            fi
+          fi
+
+  # ── STAGE 4: E2E Tests (Playwright, demo mode) ────────────
+  e2e:
+    name: "Stage 4 · E2E Tests"
+    needs: [build]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - name: Install workspace dependencies
+        run: npm ci
+        working-directory: .
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Build application
+        run: npm run build
+      - name: Run E2E tests (no wallet, no env)
+        run: npx playwright test
+        working-directory: web
+        env:
+          NODE_ENV: production
+      - name: Upload E2E artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            web/playwright-report/
+            web/test-results/
+          retention-days: 7
+
+  # ── STAGE 5: Performance (Lighthouse CI) ──────────────────
+  performance:
+    name: "Stage 5 · Performance"
+    needs: [build]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - name: Install workspace dependencies
+        run: npm ci
+        working-directory: .
+      - name: Build application
+        run: npm run build
+      - name: Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        continue-on-error: true # Advisory — don't block deploys on perf regressions yet
+
+  # ── STAGE 6: Semantic Release (automatic SemVer on green main) ──────
+  # Runs ONLY after every gate above passes on a push to main. Analyzes the
+  # Conventional Commits since the last tag and, if a release is warranted,
+  # bumps the version, updates CHANGELOG.md + package.json, tags it, and cuts
+  # a GitHub Release — fully automatic. Inert until the repo has a GitHub remote.
+  release:
+    name: "Stage 6 · Semantic Release"
+    needs: [build, e2e, performance, secret-scan, dependency-audit]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write # push the version-bump commit + tag + release
+      issues: write # comment on released issues
+      pull-requests: write # comment on released PRs
+    steps:
+      - name: Checkout (full history for commit analysis)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - name: Semantic Release (bump version, tag, changelog, GitHub release)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          npx --yes
+          -p semantic-release@24
+          -p @semantic-release/changelog@6
+          -p @semantic-release/git@10
+          semantic-release

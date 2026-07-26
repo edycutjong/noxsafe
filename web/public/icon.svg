@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="NoxSafe — a vault door with a sealed keyhole, synthwave">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0018"/><stop offset="0.55" stop-color="#0b1220"/><stop offset="1" stop-color="#05130f"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6ee7b7"/><stop offset="0.5" stop-color="#10b981"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="door" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f2a24"/><stop offset="1" stop-color="#08181a"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="dial" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="hole" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="badge"><rect x="24" y="24" width="464" height="464" rx="112"/></clipPath>
+  </defs>
+
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bg)"/>
+  <g clip-path="url(#badge)">
+    <circle cx="256" cy="246" r="150" fill="url(#sun)" opacity="0.4"/>
+    <g fill="#05130f" opacity="0.9"><rect x="106" y="250" width="300" height="8"/><rect x="106" y="272" width="300" height="10"/><rect x="106" y="296" width="300" height="12"/></g>
+    <g stroke="#7c3aed" stroke-width="2" opacity="0.38">
+      <line x1="256" y1="330" x2="-140" y2="500"/><line x1="256" y1="330" x2="90" y2="500"/><line x1="256" y1="330" x2="256" y2="500"/>
+      <line x1="256" y1="330" x2="422" y2="500"/><line x1="256" y1="330" x2="652" y2="500"/>
+      <line x1="40" y1="360" x2="472" y2="360"/><line x1="8" y1="392" x2="504" y2="392"/><line x1="-20" y1="432" x2="532" y2="432"/><line x1="-48" y1="480" x2="560" y2="480"/>
+    </g>
+    <rect x="24" y="327" width="464" height="4" fill="url(#edge)" opacity="0.95" filter="url(#glow)"/>
+    <g fill="#d9f7ea">
+      <circle cx="96" cy="96" r="2.2" opacity="0.8"/><circle cx="150" cy="150" r="1.6" opacity="0.6"/><circle cx="392" cy="110" r="2" opacity="0.75"/>
+      <circle cx="430" cy="176" r="1.5" opacity="0.5"/><circle cx="330" cy="80" r="1.5" opacity="0.6"/><circle cx="196" cy="72" r="1.4" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- vault emblem -->
+  <g filter="url(#glow)" transform="translate(256,268) scale(1.06) translate(-256,-268)">
+    <!-- door -->
+    <rect x="150" y="162" width="212" height="212" rx="42" fill="url(#door)" stroke="url(#edge)" stroke-width="4"/>
+    <!-- corner bolts -->
+    <g fill="#34d399"><circle cx="182" cy="194" r="7"/><circle cx="330" cy="194" r="7"/><circle cx="182" cy="342" r="7"/><circle cx="330" cy="342" r="7"/></g>
+    <!-- combination dial ring + ticks -->
+    <circle cx="256" cy="268" r="86" fill="none" stroke="url(#dial)" stroke-width="5" opacity="0.9"/>
+    <g stroke="#10b981" stroke-width="3" opacity="0.7">
+      <line x1="256" y1="188" x2="256" y2="200"/><line x1="336" y1="268" x2="324" y2="268"/><line x1="256" y1="348" x2="256" y2="336"/><line x1="176" y1="268" x2="188" y2="268"/>
+      <line x1="313" y1="211" x2="305" y2="219"/><line x1="313" y1="325" x2="305" y2="317"/><line x1="199" y1="325" x2="207" y2="317"/><line x1="199" y1="211" x2="207" y2="219"/>
+    </g>
+    <!-- shackle crowning the keyhole -->
+    <path d="M232 250 L232 234 A24 24 0 0 1 280 234 L280 250" fill="none" stroke="url(#hole)" stroke-width="13" stroke-linecap="round"/>
+    <!-- keyhole (sealed) -->
+    <circle cx="256" cy="266" r="21" fill="url(#hole)"/>
+    <path d="M247 280 L240 312 L272 312 L265 280 Z" fill="url(#hole)"/>
+  </g>
+</svg>

@@ -1,0 +1,6 @@
+{
+  "name": "NoxSafe — Confidential Payroll",
+  "description": "Pay DAO contributors from your Safe with amounts encrypted end-to-end. Owners approve a cap; each recipient decrypts only their own line.",
+  "iconPath": "icon.svg",
+  "version": "0.1.0"
+}

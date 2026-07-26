@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="NoxSafe animated mark — a multisig vault dial spinning and sealing the keyhole">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0018"/><stop offset="0.55" stop-color="#0b1220"/><stop offset="1" stop-color="#05130f"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6ee7b7"/><stop offset="0.5" stop-color="#10b981"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="door" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f2a24"/><stop offset="1" stop-color="#08181a"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+    <linearGradient id="dial" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#10b981"/></linearGradient>
+    <linearGradient id="hole" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="15"/></filter>
+    <clipPath id="badge"><rect x="24" y="24" width="464" height="464" rx="112"/></clipPath>
+    <style>
+      @keyframes breathe{0%,100%{opacity:.28}82%{opacity:.7}}
+      @keyframes sunbreath{0%,100%{opacity:.32}50%{opacity:.48}}
+      @keyframes twinkle{0%,100%{opacity:.25}50%{opacity:.9}}
+      @keyframes seal{0%,28%{transform:scale(1)}34%{transform:scale(1.12)}44%,100%{transform:scale(1)}}
+      @keyframes strippulse{0%,100%{opacity:.5}50%{opacity:1}}
+      .breath{animation:breathe 6s ease-in-out infinite}
+      .sunb{animation:sunbreath 6s ease-in-out infinite}
+      .tw{animation:twinkle 6s ease-in-out infinite}
+      .sealg{animation:seal 6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+      .strip{animation:strippulse 6s ease-in-out infinite}
+      @media (prefers-reduced-motion: reduce){*{animation:none !important}}
+    </style>
+  </defs>
+
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bg)"/>
+  <g clip-path="url(#badge)">
+    <circle class="sunb" cx="256" cy="246" r="150" fill="url(#sun)"/>
+    <g fill="#05130f" opacity="0.9"><rect x="106" y="250" width="300" height="8"/><rect x="106" y="272" width="300" height="10"/><rect x="106" y="296" width="300" height="12"/></g>
+    <g stroke="#7c3aed" stroke-width="2" opacity="0.34">
+      <line x1="256" y1="330" x2="-140" y2="500"/><line x1="256" y1="330" x2="90" y2="500"/><line x1="256" y1="330" x2="256" y2="500"/>
+      <line x1="256" y1="330" x2="422" y2="500"/><line x1="256" y1="330" x2="652" y2="500"/>
+    </g>
+    <g fill="#7c3aed">
+      <rect x="-60" width="640" height="2.4"><animate attributeName="y" values="330;335;353;385;434;500" keyTimes="0;0.2;0.4;0.6;0.8;1" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.24;0.34;0.42;0.4;0" keyTimes="0;0.1;0.4;0.7;0.92;1" dur="6s" repeatCount="indefinite"/></rect>
+      <rect x="-60" width="640" height="2.4"><animate attributeName="y" values="330;335;353;385;434;500" keyTimes="0;0.2;0.4;0.6;0.8;1" dur="6s" repeatCount="indefinite" begin="-1.5s"/><animate attributeName="opacity" values="0;0.24;0.34;0.42;0.4;0" keyTimes="0;0.1;0.4;0.7;0.92;1" dur="6s" repeatCount="indefinite" begin="-1.5s"/></rect>
+      <rect x="-60" width="640" height="2.4"><animate attributeName="y" values="330;335;353;385;434;500" keyTimes="0;0.2;0.4;0.6;0.8;1" dur="6s" repeatCount="indefinite" begin="-3s"/><animate attributeName="opacity" values="0;0.24;0.34;0.42;0.4;0" keyTimes="0;0.1;0.4;0.7;0.92;1" dur="6s" repeatCount="indefinite" begin="-3s"/></rect>
+      <rect x="-60" width="640" height="2.4"><animate attributeName="y" values="330;335;353;385;434;500" keyTimes="0;0.2;0.4;0.6;0.8;1" dur="6s" repeatCount="indefinite" begin="-4.5s"/><animate attributeName="opacity" values="0;0.24;0.34;0.42;0.4;0" keyTimes="0;0.1;0.4;0.7;0.92;1" dur="6s" repeatCount="indefinite" begin="-4.5s"/></rect>
+    </g>
+    <rect class="strip" x="24" y="327" width="464" height="4" fill="url(#edge)" filter="url(#glow)"/>
+    <g fill="#d9f7ea">
+      <circle class="tw" cx="96" cy="96" r="2.2"/><circle class="tw" cx="150" cy="150" r="1.6" style="animation-delay:-2s"/><circle class="tw" cx="392" cy="110" r="2" style="animation-delay:-1s"/>
+      <circle class="tw" cx="430" cy="176" r="1.5" style="animation-delay:-3s"/><circle class="tw" cx="330" cy="80" r="1.5" style="animation-delay:-4s"/><circle class="tw" cx="196" cy="72" r="1.4" style="animation-delay:-2.5s"/>
+    </g>
+  </g>
+
+  <!-- glow-breath duplicate -->
+  <g class="breath" filter="url(#soft)" transform="translate(256,268) scale(1.06) translate(-256,-268)">
+    <rect x="150" y="162" width="212" height="212" rx="42" fill="#10b981"/>
+    <circle cx="256" cy="266" r="21" fill="#7c3aed"/>
+  </g>
+
+  <!-- vault emblem -->
+  <g filter="url(#glow)" transform="translate(256,268) scale(1.06) translate(-256,-268)">
+    <!-- encrypt ring (seam-safe) -->
+    <rect x="146" y="158" width="220" height="220" rx="46" fill="none" stroke="url(#edge)" stroke-width="3" pathLength="100" stroke-dasharray="100">
+      <animate attributeName="stroke-dashoffset" values="100;100;0;0;100;100" keyTimes="0;0.05;0.3;0.66;0.92;1" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0.9;0;0" keyTimes="0;0.08;0.3;0.66;0.92;1" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="150" y="162" width="212" height="212" rx="42" fill="url(#door)" stroke="url(#edge)" stroke-width="4"/>
+    <g fill="#34d399"><circle cx="182" cy="194" r="7"/><circle cx="330" cy="194" r="7"/><circle cx="182" cy="342" r="7"/><circle cx="330" cy="342" r="7"/></g>
+    <!-- combination dial ring -->
+    <circle cx="256" cy="268" r="86" fill="none" stroke="url(#dial)" stroke-width="5" opacity="0.9"/>
+    <!-- spinning ticks -->
+    <g stroke="#10b981" stroke-width="3" opacity="0.7">
+      <line x1="256" y1="188" x2="256" y2="200"/><line x1="336" y1="268" x2="324" y2="268"/><line x1="256" y1="348" x2="256" y2="336"/><line x1="176" y1="268" x2="188" y2="268"/>
+      <line x1="313" y1="211" x2="305" y2="219"/><line x1="313" y1="325" x2="305" y2="317"/><line x1="199" y1="325" x2="207" y2="317"/><line x1="199" y1="211" x2="207" y2="219"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 256 268;360 256 268" dur="6s" repeatCount="indefinite"/>
+    </g>
+    <!-- approval checks: 2-of-3 signed (pop in, hold, fade at seam) -->
+    <g stroke="#34d399" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M214 236 l7 8 l13 -16"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.15;0.24;0.9;0.96;1" dur="6s" repeatCount="indefinite"/></path>
+      <path d="M278 236 l7 8 l13 -16"><animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.18;0.27;0.31;0.9;0.96;1" dur="6s" repeatCount="indefinite"/></path>
+    </g>
+    <!-- shackle crown -->
+    <path d="M232 250 L232 234 A24 24 0 0 1 280 234 L280 250" fill="none" stroke="url(#hole)" stroke-width="13" stroke-linecap="round"/>
+    <!-- keyhole seal (pulses) -->
+    <g class="sealg">
+      <circle cx="256" cy="266" r="21" fill="url(#hole)"/>
+      <path d="M247 280 L240 312 L272 312 L265 280 Z" fill="url(#hole)"/>
+    </g>
+    <!-- seal ripple -->
+    <circle cx="256" cy="272" r="10" fill="none" stroke="#a78bfa" stroke-width="3">
+      <animate attributeName="r" values="8;8;70;70" keyTimes="0;0.32;0.5;1" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.85;0;0" keyTimes="0;0.32;0.36;0.52;1" dur="6s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "network": "sepolia",
+  "at": "2026-07-12T01:43:45.237Z",
+  "encryptN": 10,
+  "concurrentEncryptMs": 2638,
+  "encryptPerLineMs": 264,
+  "settledRosterLines": 6,
+  "proposeGas": 802612,
+  "executeGas": 1863699,
+  "perPayoutGas": 310617,
+  "decrypt": {
+    "n": 20,
+    "min": 780,
+    "p50": 814,
+    "p95": 2005,
+    "max": 2005,
+    "mean": 965
+  }
+}

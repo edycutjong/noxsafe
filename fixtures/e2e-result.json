@@ -1,0 +1,24 @@
+{
+  "network": "sepolia",
+  "at": "2026-07-12T01:41:58.081Z",
+  "safe": "0x3Bd273B4f90829C0fA5d2aFa296b02E2AFaF9642",
+  "rail": "0xE7158dAE72C94D6396ed73636d9E5Fe4B5370ED8",
+  "designerLine": "4200",
+  "capFlags": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+  ],
+  "auditorTotal": "26000",
+  "txHashes": {
+    "onboarding": "0x682907a529ea5fae35c2a84c7f74c2abeb14227d84efce0b3ed4f00bdfaf72e1",
+    "propose": "0x3b5cd1f1775bffa0fcf275e797b2325405fa879349860097bbef02838e558718",
+    "approve": "0xaccc19b0d7d46145aacebafd85509765f0de9cd5bbc2875efec7e09338dacef2",
+    "execute": "0x62bf1ca411e87a61100fcf3c33744476ea016d9a2ddea023d8b7612673b093d2",
+    "grantAuditor": "0xc623e5e4a0e671956b62e44f1910b26d52354e8f6a9a7ea70ac2540fcd134369",
+    "proveBudget": "0x083f91a427f6ecdce07f6962a2531f98fc5a90584de2fe029fee0af78326cdb9"
+  }
+}
