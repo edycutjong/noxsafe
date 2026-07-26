@@ -44,7 +44,7 @@
     "@safe-global/protocol-kit": "^8.0.4",
     "@safe-global/safe-apps-sdk": "^9.1.0",
     "@types/node": "^22.20.1",
-    "hardhat": "^2.28.6",
+    "hardhat": "^3.11.1",
     "solidity-coverage": "^0.8.17",
     "tsx": "^4.23.1",
     "typescript": "^5.9.3",
