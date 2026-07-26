@@ -13,7 +13,7 @@ test.describe('Safe App — treasurer tabs', () => {
 
     // Onboard tab: the 4-call multisig batch.
     await expect(page.getByRole('heading', { name: 'Set up confidential payroll' })).toBeVisible();
-    await expect(page.getByText('one multisig batch', { exact: false })).toBeVisible();
+    await expect(page.getByText(/owners sign the queue item/i)).toBeVisible();
 
     // Roster tab: encrypt-and-propose builder.
     await tabStrip.getByText('Roster', { exact: true }).click();
