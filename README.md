@@ -49,7 +49,7 @@ recipient — and an auditor if the DAO chooses. Delivered as a **Safe App** ins
 **The same roster, three truths:** sealed to the public queue · one line to each recipient · all lines to
 the auditor, on one on-chain grant.
 
-## Operator, not module (the trust story)
+## 🔑 Operator, not module (the trust story)
 
 The rail holds **zero Safe execution rights**. It is a time-bound ERC-7984 operator
 (`cUSD.setOperator(rail, quarterEnd)`), revocable with one `setOperator(rail, 0)` from the queue. Its
@@ -57,7 +57,7 @@ worst-case blast radius is the wrapped float — which the app sets equal to the
 so the worst case *is* the approved spend. The Safe's unwrapped USDC is untouchable. We didn't ask the
 Safe to trust a module with its treasury; we asked it to delegate a capped, expiring token authority.
 
-## Status — LIVE on Sepolia via a real 2-of-3 Safe ✅
+## 🟢 Status — LIVE on Sepolia via a real 2-of-3 Safe ✅
 
 The full quarter lifecycle is proven on Ethereum Sepolia, governed by a **real 2-of-3 Safe** (created via
 protocol-kit): the onboarding batch and every approval were routed through the multisig (two owners sign,
@@ -82,7 +82,7 @@ Reproduce: `npm run e2e:safe` (full multisig lifecycle) · `npm run e2e:local` (
 Etherscan source-verify is one zero-gas command — `npm run verify:contracts` (`ETHERSCAN_API_KEY` is set in
 `.env`); DemoUSD + cUSD are already verified.
 
-## Quickstart
+## 🚀 Quickstart
 
 ```bash
 npm install
@@ -108,7 +108,7 @@ npm run bench             # roster×10 encrypt wall-time + per-payout gas + decr
 
 Estimated Sepolia ETH for the funded run: **~0.02–0.03 ETH** (1 deploy + ~15 lifecycle txs).
 
-## Configuration — environment variables & services
+## ⚙️ Configuration — environment variables & services
 
 Copy the template and fill it in (`.env` is gitignored — never commit real keys; use throwaway keys, Sepolia only):
 
@@ -133,7 +133,7 @@ cp .env.example .env
 
 Deployed contract addresses for this app (2-of-3 Safe, PayrollRail, cUSD) are in the **Status** table under [_LIVE on Sepolia_](#status--live-on-sepolia-via-a-real-2-of-3-safe-) above.
 
-## How it works
+## 🏗️ How it works
 
 The full lifecycle and the encrypted budget invariant are in [`SPEC.md`](docs/SPEC.md); the stack + diagram in
 [`ARCHITECTURE.md`](docs/ARCHITECTURE.md); the demo script in [`DEMO.md`](docs/DEMO.md).
@@ -147,7 +147,7 @@ Nox.allowTransient(pay, address(cUSD));
 cUSD.confidentialTransferFrom(safe, recipient, pay);           // operator-pull from the Safe
 ```
 
-## Why only Nox
+## 🔐 Why only Nox
 
 `select`-based encrypted enforcement (over-cap pays encrypted zero, on-chain indistinguishable) ·
 per-handle viewer ACLs for recipient/auditor disclosure · `allow` (admin) vs `addViewer` (viewer) for the
@@ -156,7 +156,7 @@ compliance-officer/auditor split · `allowPublicDecryption` for a "spend ≤ bud
 an FHE coprocessor, a disclosure registry, a custodial payroll processor, and a bespoke audited Safe
 module — four systems and a worse trust story. See [`docs/SPONSOR_DEFENSE.md`](docs/SPONSOR_DEFENSE.md).
 
-## Honest limitations
+## ⚠️ Honest limitations
 
 - The treasurer sees plaintext amounts client-side (inherent to composing payroll).
 - The operator grant covers any amount until expiry (ERC-7984 semantics) — mitigated by short expiry +
@@ -164,7 +164,7 @@ module — four systems and a worse trust story. See [`docs/SPONSOR_DEFENSE.md`]
 - The total wrapped float and recipient addresses are public; only line amounts are the protected asset.
 - Beta SDK `0.1.0-beta.13` pinned; our 15 dated frictions are in [`feedback.md`](docs/feedback.md).
 
-## Engineering harness
+## 🛠️ Engineering harness
 
 Not a weekend prototype — the repo ships a production-grade harness. A 7-stage
 GitHub Actions pipeline (`.github/workflows/ci.yml`) gates every PR:
@@ -207,7 +207,7 @@ E2E runs headless with **no wallet and no env vars**: it drives the Safe App
 tabs, the recipient/auditor disclosure portals and `/verify` straight off the
 deterministic demo fixture, asserting the confidentiality UX renders correctly.
 
-## Disclosure
+## 📢 Disclosure
 
 Built during the WTF!! Hackathon (iExec Nox). The confidential-token skeleton (`ConfidentialUSD` wrapper,
 `DemoUSD`, the handle/ACL integration patterns, and the deploy/bench/readiness script shapes) is a **shared
