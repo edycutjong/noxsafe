@@ -139,3 +139,26 @@ details.faq .ans code { font-family: var(--mono); font-size: 12px; color: var(--
   .lift:hover { transform:none !important; }
   .btn:active { transform:none !important; }
 }
+
+/* ── Universal pressable feedback (deep-analysis fix: press + keyboard focus on ALL interactive elements) ── */
+button, summary, [role="button"], .btn, .btn-press, .pill, a.chip, button.chip, .nav a, .tab {
+  transition: transform .12s ease, filter .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
+}
+button:not(:disabled):active, summary:active, [role="button"]:active {
+  transform: translateY(1px) scale(.985);
+}
+/* plain text links: brightness pulse on press (no layout-shifting transform) */
+a:not(.btn):not(.btn-press):active { filter: brightness(1.18); }
+/* hover for clickable chips / nav tabs that had none */
+a.chip:hover, button.chip:hover, .nav a:hover:not(.active) { filter: brightness(1.12); transform: translateY(-1px); }
+/* keyboard focus-visible ring — was missing entirely */
+:where(button, a, summary, [role="button"]):focus-visible {
+  outline: 2px solid #34D399; outline-offset: 2px; border-radius: 10px;
+}
+:where(input, textarea, select):focus-visible {
+  outline: 2px solid #34D399; outline-offset: 1px;
+}
+@media (prefers-reduced-motion: reduce) {
+  button:active, summary:active, [role="button"]:active,
+  a.chip:hover, button.chip:hover, .nav a:hover:not(.active) { transform: none !important; }
+}
