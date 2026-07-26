@@ -30,6 +30,7 @@
   <p><em>✅ Live on Ethereum Sepolia — a real 2-of-3 Safe runs the full confidential-payroll lifecycle on-chain: sealed amounts, an over-cap line paying encrypted zero, a publicly-auditable cap flag. 195 tests green. Not a mock.</em></p>
 
 </div>
+
 ---
 
 > **Owners approve the cap. Nobody reads the salaries.**
