@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/edycutjong/noxsafe/compare/v1.2.1...v1.3.0) (2026-07-28)
+
+
+### Features
+
+* **pitch:** real QR + SVG icons + share metadata ([741f569](https://github.com/edycutjong/noxsafe/commit/741f56950306bd5099e9c6480a0bed2a141405bb))
+
 ## [1.2.1](https://github.com/edycutjong/noxsafe/compare/v1.2.0...v1.2.1) (2026-07-28)
 
 
