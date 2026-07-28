@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/edycutjong/noxsafe/compare/v1.1.0...v1.2.0) (2026-07-28)
+
+
+### Features
+
+* **web:** Cipher-Noir landing redesign + real demo video + README screenshots ([deade66](https://github.com/edycutjong/noxsafe/commit/deade663ebd6fd26426e5524d7edb42a2a8f20ad))
+
 # [1.1.0](https://github.com/edycutjong/noxsafe/compare/v1.0.0...v1.1.0) (2026-07-26)
 
 
