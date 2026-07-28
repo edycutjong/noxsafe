@@ -1,3 +1,11 @@
+## [1.3.1](https://github.com/edycutjong/noxsafe/compare/v1.3.0...v1.3.1) (2026-07-28)
+
+
+### Bug Fixes
+
+* **pitch:** add flex:none to #stage so it fills the viewport (was shrinking to 1333px) ([6b06755](https://github.com/edycutjong/noxsafe/commit/6b0675537cebf4242062d4b2dc29479d69060644)), closes [#stage](https://github.com/edycutjong/noxsafe/issues/stage)
+* **pitch:** use scannable PNG QR (data-URI) encoding the full https URL ([82628dd](https://github.com/edycutjong/noxsafe/commit/82628dd6553cd356c3315c9fe3c313fce6ed6068))
+
 # [1.3.0](https://github.com/edycutjong/noxsafe/compare/v1.2.1...v1.3.0) (2026-07-28)
 
 
