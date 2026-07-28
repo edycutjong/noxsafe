@@ -1,6 +1,10 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { Space_Grotesk, Manrope } from 'next/font/google';
 import { Nav } from '../components/Nav';
+
+const display = Space_Grotesk({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-display', display: 'swap' });
+const body = Manrope({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-body', display: 'swap' });
 
 const TITLE = 'NoxSafe — Confidential Payroll for Safe';
 const DESCRIPTION =
@@ -37,7 +41,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
         <div className="wrap">
           <div className="brand">

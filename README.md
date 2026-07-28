@@ -6,7 +6,7 @@
 
   <br/>
 
-  [![Demo Video](https://img.shields.io/badge/▶_Demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/xxxxxxxxxxx)
+  [![Demo Video](https://img.shields.io/badge/▶_Demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/x8KcsXDdJjk)
   [![Live Demo](https://img.shields.io/badge/🚀_Live-Demo-06b6d4?style=for-the-badge)](https://noxsafe.edycu.dev)
   [![Pitch Deck](https://img.shields.io/badge/📊_Pitch-Deck-f59e0b?style=for-the-badge)](https://noxsafe.edycu.dev/pitch)
   [![WTF!! Hackathon](https://img.shields.io/badge/WTF!!_Hackathon-iExec_Nox-8b5cf6?style=for-the-badge)](https://dorahacks.io/hackathon/wtf-hackathon)
@@ -21,7 +21,7 @@
   ![ERC-7984](https://img.shields.io/badge/ERC--7984-Confidential_Token-7c3aed?style=flat)
   ![Tests](https://img.shields.io/badge/tests-195_passing-3fb950?style=flat)
   ![Coverage](https://img.shields.io/badge/contracts_coverage-100%25-3fb950?style=flat)
-  [![Release](https://img.shields.io/badge/release-v1.0.0-0ea5e9?style=flat)](https://github.com/edycutjong/noxsafe/releases)
+  [![Release](https://img.shields.io/badge/release-v1.1.0-0ea5e9?style=flat)](https://github.com/edycutjong/noxsafe/releases)
   [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)](https://opensource.org/licenses/MIT)
   [![CI](https://github.com/edycutjong/noxsafe/actions/workflows/ci.yml/badge.svg)](https://github.com/edycutjong/noxsafe/actions/workflows/ci.yml)
 
@@ -29,6 +29,20 @@
 
   <p><em>✅ Live on Ethereum Sepolia — a real 2-of-3 Safe runs the full confidential-payroll lifecycle on-chain: sealed amounts, an over-cap line paying encrypted zero, a publicly-auditable cap flag. 195 tests green. Not a mock.</em></p>
 
+</div>
+
+<div align="center">
+  <img src="docs/screenshots/hero.png" alt="NoxSafe — confidential payroll for Safe, live on Ethereum Sepolia" width="100%">
+  <p><sub>The live app at <a href="https://noxsafe.edycu.dev">noxsafe.edycu.dev</a> — owners approve a public cap; every salary stays sealed.</sub></p>
+</div>
+
+<div align="center">
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/flow.png" alt="NoxSafe — auditor view, over-cap line pays encrypted zero"><br><sub>Auditor view — every line revealed; the over-cap line pays <b>encrypted 0</b> while the <code>spend ≤ cap</code> flag stays <b>TRUE</b>.</sub></td>
+<td width="50%"><img src="docs/screenshots/verify.png" alt="NoxSafe — /verify judge dashboard"><br><sub><code>/verify</code> — the full 2-of-3 Safe payroll lifecycle, recomputed from chain.</sub></td>
+</tr>
+</table>
 </div>
 
 ---
@@ -195,7 +209,7 @@ make security-scan  # npm audit + license check
 
 | Layer | Tool | Status |
 |---|---|---|
-| Contract quality | Hardhat + Solidity `viaIR` | ✅ 65 tests |
+| Contract quality | Hardhat + Solidity `viaIR` | ✅ 67 tests |
 | SDK unit testing | Vitest | ✅ 128 tests |
 | Frontend quality | ESLint (`next lint`) + TypeScript strict | ✅ |
 | E2E testing | Playwright — 3 suites × 2 devices (demo mode) | ✅ 54 checks |
@@ -207,6 +221,10 @@ make security-scan  # npm audit + license check
 E2E runs headless with **no wallet and no env vars**: it drives the Safe App
 tabs, the recipient/auditor disclosure portals and `/verify` straight off the
 deterministic demo fixture, asserting the confidentiality UX renders correctly.
+
+## 📄 License
+
+[MIT](LICENSE) © 2026 Edy Cu
 
 ## 📢 Disclosure
 

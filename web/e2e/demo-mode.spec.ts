@@ -11,7 +11,9 @@ test.describe('Demo mode — loads without wallet or API keys', () => {
     await page.goto('/');
     // Global brand header (in layout.tsx) is present on every route.
     await expect(page.getByRole('heading', { name: 'NoxSafe', level: 1 })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Safe App — runs inside app\.safe\.global/ })).toBeVisible();
+    // Safe App positioning copy now lives in the product-section eyebrow; heading is "Try the treasurer flow".
+    await expect(page.getByText(/runs inside app\.safe\.global/i)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Try the treasurer flow/i })).toBeVisible();
   });
 
   test('correct document title + meta description', async ({ page }) => {
