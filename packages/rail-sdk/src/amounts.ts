@@ -4,7 +4,7 @@ export const CUSD_DECIMALS = 6;
 /** Parse a human amount ("1850", "1,850.50", 1850) to base units (bigint). */
 export function toBaseUnits(amount: string | number, decimals = CUSD_DECIMALS): bigint {
   const s = String(amount).trim().replace(/,/g, '');
-  if (s === '' || !/^\d*\.?\d*$/.test(s) || s === '.') {
+  if (s === '' || !/^\d*(?:\.\d*)?$/.test(s) || s === '.') {
     throw new Error(`Invalid amount: ${amount}`);
   }
   const [whole, frac = ''] = s.split('.');

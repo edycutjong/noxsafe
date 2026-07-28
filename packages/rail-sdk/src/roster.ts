@@ -14,7 +14,7 @@ export interface RosterLine {
 }
 
 const COMMENT = /^\s*#/;
-const HEADER = /^\s*(name|label)?\s*,?\s*(address|recipient|to)\b/i;
+const HEADER = /^\s*(?:(?:name|label)[ \t]*(?:,[ \t]*)?)?(?:address|recipient|to)\b/i;
 
 /**
  * Parse a roster CSV. Accepted row shapes (header optional, `#` comments + blank lines skipped):
