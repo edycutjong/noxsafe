@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/edycutjong/noxsafe/compare/v1.2.0...v1.2.1) (2026-07-28)
+
+
+### Bug Fixes
+
+* **security:** resolve CodeQL high-severity alerts (ReDoS + DOM XSS) ([b9a1e5f](https://github.com/edycutjong/noxsafe/commit/b9a1e5fa629f001519ecd73e5cf9d2c9fccd6e9d)), closes [hi#severity](https://github.com/hi/issues/severity)
+
 # [1.2.0](https://github.com/edycutjong/noxsafe/compare/v1.1.0...v1.2.0) (2026-07-28)
 
 
